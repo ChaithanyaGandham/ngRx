@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<section>
+  <div class="container">
+    <div class="row" style="margin-top: 5%;">
+      <div class="col-md-12" style="text-align: center; margin: 5%;">
+        <h2>My Articles</h2>
+      </div>
+      <div class="col-md-6">
+        <div class="card p-4 shadow-sm">
+          <form #myform="ngForm">
+            <div class="form-group">
+              <label for="name">Article Id</label>
+              <input class="form-control" id="id" name="id" type="text" aria-describedby="identity" ngModel required>
+            </div>
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input class="form-control" id="title" name="title" type="text" aria-describedby="title" ngModel>
+            </div>
+            <div class="form-group">
+              <label for="author">Author</label>
+              <input class="form-control" id="author" name="author" type="text" ngModel>
+            </div>
+            <div class="form-group">
+              <label for="publisher">Publisher</label>
+              <input class="form-control" id="publisher" name="publisher" type="text" ngModel>
+            </div>
+            <div style="display: flex; gap: 5px">
+              <button class="btn btn-primary" type="submit" (click)="addArticle(myform)">Add Article</button>
+              <button class="btn btn-primary" type="submit" (click)="onUpdate(myform)">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-primary" *ngFor="let article of articles$ | async">
+            {{article.title}} by <b>{{article.author}}</b>
+            <button class="btn btn-primary" type="button" (click)="onDelete(article)">Delete</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
